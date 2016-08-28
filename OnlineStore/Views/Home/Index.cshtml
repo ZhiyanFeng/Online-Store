@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>MVC Cellphone Store</h1>
+    <img class="storePhoto" src="~/Images/CellPhoneStore.png" />
+</div>
+
+<ul class="row list-unstyled" id="album-list">
+    @foreach (var phone in Model)
+    {
+        <li class="col-lg-2 col-md-2 col-sm-2 col-xs-4 container">
+            <a href="@Url.Action("Details", "Products", new { id = phone.Id })">
+                <img class="phonePhoto" alt="@phone.Name" src="@Url.Content(@phone.PhotoUrl)" />
+                <h4>@phone.Name</h4>
+            </a>
+        </li>
+    }
+</ul>
+
+<div id="dailydeal">
+    @Ajax.ActionLink("Click here to see today's special!",
+        "DailyDeal",
+        null,
+        new AjaxOptions
+        {
+            UpdateTargetId = "dailydeal",
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "GET"
+        },
+        new { @class = "btn btn-primary" })
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/App/MusicScripts.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+}@{
+    ViewBag.Title = "Home Page";
+}
+
